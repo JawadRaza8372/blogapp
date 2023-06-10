@@ -20,13 +20,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary} from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
-import firestore from '@react-native-firebase/firestore';
 import {setImageUrl} from '../../Redux/counterSlice';
 import auth from '@react-native-firebase/auth';
 import {Alert} from 'react-native';
 import Appbutton from '../../Components/Appbutton';
 import AppPassword from '../../Components/AppPassword';
 import AppInput from '../../Components/AppInput';
+import firestore from '@react-native-firebase/firestore';
 
 const Setting = ({navigation}) => {
   const username = useSelector(state => state.counter.username);
@@ -126,7 +126,6 @@ const Setting = ({navigation}) => {
     });
   };
   const [loginLoad, setloginLoad] = useState(false);
-  const [countersnippet, setcountersnippet] = useState(0);
   const LoginRequest = async () => {
     if (Email.trim() === '') {
       Alert.alert('Error', 'Email is required');
@@ -155,6 +154,16 @@ const Setting = ({navigation}) => {
 
     const user = auth().currentUser;
     if (user) {
+      await firestore()
+        .collection('Users')
+        .where('email', '==', email)
+        .get()
+        .then(async Querysnapshot => {
+          await firestore()
+            .collection('Users')
+            .doc(Querysnapshot.docs[0].id)
+            .delete();
+        });
       await user
         .delete()
         .then(async () => {
@@ -203,8 +212,6 @@ const Setting = ({navigation}) => {
             <View
               style={{
                 width: '100%',
-                borderColor: 'red',
-                borderWidth: 2,
               }}>
               <SettingItem
                 onPress={() => {
@@ -257,7 +264,7 @@ const Setting = ({navigation}) => {
                 icon={'trash'}
                 text1={'Delete Account'}
                 text2={'Delete your account parmanently'}
-                onPress={delaccount}
+                onPress={() => setloginLoad(true)}
               />
             </View>
           </ScrollView>
@@ -267,7 +274,7 @@ const Setting = ({navigation}) => {
         <ImageBackground
           source={require('../../../assets/background.png')}
           style={styles.mainContainerLogin}>
-          <Text style={styles.TopH1}>Welcome Back!</Text>
+          <Text style={styles.TopH1}>Delete Account!</Text>
           <Text style={styles.TopH2}>Login with your Email</Text>
           <View style={styles.space} />
           <AppInput
@@ -284,7 +291,7 @@ const Setting = ({navigation}) => {
             }}
             onchange={val => setpassword(val)}
           />
-
+          <View style={{marginTop: 15}} />
           <Appbutton
             onPress={loader ? null : LoginRequest}
             txt={

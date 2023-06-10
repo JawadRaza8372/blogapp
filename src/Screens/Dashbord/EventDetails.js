@@ -179,9 +179,7 @@ const EventDetails = ({route}) => {
           </View>
           {/* date */}
           {/* date */}
-          <TouchableOpacity
-            onPress={() => setlocationModalMap(true)}
-            style={styles.DDContainer}>
+          <View style={styles.DDContainer}>
             <View style={styles.LeftCC3}>
               <View style={styles.Cicle3}>
                 <Icon name={'location'} size={25} color="#FFFFFF" />
@@ -191,7 +189,7 @@ const EventDetails = ({route}) => {
               <Text style={styles.Contt}>Location</Text>
               <Text style={styles.Contt2}>{item.Location}</Text>
             </View>
-          </TouchableOpacity>
+          </View>
           {/* date */}
 
           {/* TopCOntainer */}
