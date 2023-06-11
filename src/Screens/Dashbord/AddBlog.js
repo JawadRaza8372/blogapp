@@ -29,6 +29,8 @@ const AddBlog = ({navigation}) => {
   const [Loader, setLoader] = useState(false);
   const email = useSelector(state => state.counter.email);
   const username = useSelector(state => state.counter.username);
+  const userimg = useSelector(state => state.counter.IMageUrl);
+  console.log(check);
   const FIREBASE_API_KEY =
     'AAAAtTf2O1A:APA91bFVKW6PUkjnZGQuYYWT_D2KgriSJDhhelcRtRP60HvEhNT67Li4f6FAV9Wtm2eVfBijgeHSp6DnmRxGY7iu3VCRxA5MiKCS_2II3-3hSZjvOiIlv-3tAMdZOE69oN9GNvEOqnRx'; // Replace with your Firebase API key
 
@@ -87,6 +89,7 @@ const AddBlog = ({navigation}) => {
         email: email,
         likes: [],
         comments: [],
+        profileimg: userimg,
       })
       .then(() => {
         // setLoader(false);
@@ -106,12 +109,12 @@ const AddBlog = ({navigation}) => {
             sendNotifications(
               userData,
               'New Blog Uploaded',
-              `${username} Upload this blog on this ${Title} `,
+              `${username} posted this blog on this ${Title} `,
             )
               .then(responses => {
                 // Handle success, if needed
                 console.log('All notifications sent:', responses);
-                Alert.alert('Sccuess!', 'Post Are Uploaded');
+                Alert.alert('Sccuess!', 'Post Uploaded');
                 setLoader(false);
                 navigation.pop();
               })
@@ -213,11 +216,11 @@ const AddBlog = ({navigation}) => {
   };
   const Request = () => {
     if (Title.trim() === '') {
-      Alert.alert('Error', 'Email is required');
+      Alert.alert('Error', 'Title is required');
       return;
     }
     if (Description.trim() === '') {
-      Alert.alert('Error', 'Password is required');
+      Alert.alert('Error', 'Description is required');
       return;
     }
     if (selectedImage) {

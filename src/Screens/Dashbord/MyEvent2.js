@@ -135,7 +135,7 @@ const MyEvents2 = () => {
                   <AppEvents
                     item={item}
                     onPress={() => {
-                      navigation.navigate('EventDetails2', {
+                      navigation.navigate('EventDetails', {
                         item: item,
                       });
                     }}

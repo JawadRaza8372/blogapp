@@ -286,7 +286,7 @@ const Login = ({navigation}) => {
       <AppInput
         placeholderText={'User name'}
         iconName={'person'}
-        onChange={val => SetEmail(val)}
+        onChange={val => SetEmail(val?.toLowerCase())}
       />
       <AppPassword
         placeholderText={'Password'}

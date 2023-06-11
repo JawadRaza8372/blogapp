@@ -168,13 +168,11 @@ const AppEvents = ({item, onPress}) => {
             <View style={styles.IconCC}>
               <Icon name={'chatbubble'} size={25} color="#1E1E1E" />
             </View>
-            <Text style={styles.TextCC}>Commnet</Text>
-          </TouchableOpacity>
-          <View style={styles.IconContainer1}>
             <Text style={styles.TextCC}>
-              {commentsLength?.length > 0 ? commentsLength.length : 0} Commnets
+              {commentsLength?.length > 0 ? commentsLength.length : 0}
+              {commentsLength?.length > 1 ? ' Comments' : ' Comment'}
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
 

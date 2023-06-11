@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   BoxCC: {
-    width: '15%',
+    width: w('15%'),
     backgroundColor: Colors.Primary,
     height: '100%',
     justifyContent: 'center',
@@ -39,5 +39,6 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: h('2%'),
     marginLeft: 10,
+    width: w('78%'),
   },
 });

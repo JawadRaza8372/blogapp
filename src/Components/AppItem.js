@@ -290,7 +290,7 @@ const AppItem = ({item, onPress}) => {
       {/* comment /like section */}
       <View style={styles.CommnetSection}>
         <TouchableOpacity
-          style={{...styles.IconContainer, width: '23%'}}
+          style={{...styles.IconContainer}}
           onPress={() => {
             checkColor ? DeleteLike() : UploadPost(item.id);
           }}>
@@ -308,14 +308,13 @@ const AppItem = ({item, onPress}) => {
           {loader ? (
             <ActivityIndicator size={'small'} />
           ) : (
-            <Text style={styles.TextCC}>Like</Text>
+            <Text style={styles.TextCC}>
+              {likesLength?.length > 0 ? likesLength.length : 0}
+              {likesLength?.length > 1 ? ' Likes' : ' Like'}
+            </Text>
           )}
         </TouchableOpacity>
-        <View style={styles.IconContainer1}>
-          <Text style={styles.TextCC}>
-            {likesLength?.length > 0 ? likesLength.length : 0} Likes
-          </Text>
-        </View>
+
         <TouchableOpacity
           onPress={() => {
             setcommentloaderMain(true);
@@ -326,13 +325,11 @@ const AppItem = ({item, onPress}) => {
           <View style={styles.IconCC}>
             <Icon name={'chatbubble'} size={25} color="#1E1E1E" />
           </View>
-          <Text style={styles.TextCC}>Commnet</Text>
-        </TouchableOpacity>
-        <View style={styles.IconContainer1}>
           <Text style={styles.TextCC}>
-            {commentsLength?.length > 0 ? commentsLength.length : 0} Commnets
+            {commentsLength?.length > 0 ? commentsLength.length : 0}
+            {commentsLength?.length > 1 ? ' Comments' : ' Comment'}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <Modal
@@ -554,7 +551,7 @@ const styles = StyleSheet.create({
   },
   IconContainer: {
     // backgroundColor: 'gold',
-    width: '26%',
+    width: '49%',
     height: '100%',
     flexDirection: 'row',
     alignItems: 'center',

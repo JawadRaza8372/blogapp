@@ -270,7 +270,10 @@ const Setting = ({navigation}) => {
           </ScrollView>
         </View>
       </View>
-      <Modal animationType="slide" visible={loginLoad}>
+      <Modal
+        animationType="slide"
+        visible={loginLoad}
+        onRequestClose={() => setloginLoad(false)}>
         <ImageBackground
           source={require('../../../assets/background.png')}
           style={styles.mainContainerLogin}>
@@ -280,7 +283,7 @@ const Setting = ({navigation}) => {
           <AppInput
             placeholderText={'User name'}
             iconName={'person'}
-            onChange={val => SetEmail(val)}
+            onChange={val => SetEmail(val?.toLowerCase())}
           />
           <AppPassword
             placeholderText={'Password'}

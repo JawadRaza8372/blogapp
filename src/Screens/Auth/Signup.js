@@ -139,7 +139,7 @@ const Signup = ({navigation}) => {
         placeholderText={'Email'}
         iconName={'mail'}
         onChange={vale => {
-          setEmail(vale);
+          setEmail(vale?.toLowerCase());
         }}
       />
       <AppPassword
