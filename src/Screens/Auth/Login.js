@@ -39,7 +39,7 @@ const Login = ({navigation}) => {
       await AsyncStorage.setItem(
         'user_sessionblog',
         JSON.stringify({
-          email: Email,
+          email: Email?.replace(' ', ''),
           username: val,
           ImageUrl: val2,
         }),

@@ -90,14 +90,11 @@ const Signup = ({navigation}) => {
       .collection('Users')
       .add({
         name: username,
-        email: Email,
+        email: Email?.replace(' ', ''),
         fcmtoken: '',
         status: true,
       })
       .then(() => {
-        // console.log('User added!');
-        // setloader(false);
-        // CreateUser();
         sendVerificationEmail(userCredential);
       })
       .catch(() => {
@@ -110,8 +107,9 @@ const Signup = ({navigation}) => {
     await auth()
       .createUserWithEmailAndPassword(Email?.replace(' ', ''), Password)
       .then(userCredential => {
-        // console.log('Okey');
-        AddDatainFireStore(userCredential);
+        if (userCredential != {} || userCredential?.length > 0) {
+          AddDatainFireStore(userCredential);
+        }
       })
       .catch(err => {
         console.log(err.code);
