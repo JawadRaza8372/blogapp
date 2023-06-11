@@ -107,9 +107,8 @@ const Signup = ({navigation}) => {
   };
   const CreateUser = async () => {
     setloader(true);
-
     await auth()
-      .createUserWithEmailAndPassword(Email, Password)
+      .createUserWithEmailAndPassword(Email?.replace(' ', ''), Password)
       .then(userCredential => {
         // console.log('Okey');
         AddDatainFireStore(userCredential);

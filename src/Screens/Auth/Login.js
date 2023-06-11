@@ -231,7 +231,10 @@ const Login = ({navigation}) => {
     }
     setloader(true);
     try {
-      const User = await auth().signInWithEmailAndPassword(Email, Password);
+      const User = await auth().signInWithEmailAndPassword(
+        Email?.replace(' ', ''),
+        Password,
+      );
       if (User.user.emailVerified) {
         CheckDoc();
       } else {

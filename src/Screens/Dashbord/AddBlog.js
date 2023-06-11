@@ -30,7 +30,6 @@ const AddBlog = ({navigation}) => {
   const email = useSelector(state => state.counter.email);
   const username = useSelector(state => state.counter.username);
   const userimg = useSelector(state => state.counter.IMageUrl);
-  console.log(check);
   const FIREBASE_API_KEY =
     'AAAAtTf2O1A:APA91bFVKW6PUkjnZGQuYYWT_D2KgriSJDhhelcRtRP60HvEhNT67Li4f6FAV9Wtm2eVfBijgeHSp6DnmRxGY7iu3VCRxA5MiKCS_2II3-3hSZjvOiIlv-3tAMdZOE69oN9GNvEOqnRx'; // Replace with your Firebase API key
 
