@@ -33,7 +33,7 @@ const StackNavigation = () => {
   const dispatch = useDispatch();
   const fetchData = async () => {
     try {
-      const value = await AsyncStorage.getItem('user_session');
+      const value = await AsyncStorage.getItem('user_sessionblog');
       if (value != null) {
         // console.log(value.email);
         // Handle the retrieved value if needed

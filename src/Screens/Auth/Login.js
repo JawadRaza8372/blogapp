@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
   const saveData = async (val, val2, val3) => {
     try {
       await AsyncStorage.setItem(
-        'user_session',
+        'user_sessionblog',
         JSON.stringify({
           email: Email,
           username: val,
@@ -57,7 +57,7 @@ const Login = ({navigation}) => {
   const saveDataGoogle = async (val, val2, val3) => {
     try {
       await AsyncStorage.setItem(
-        'user_session',
+        'user_sessionblog',
         JSON.stringify({
           email: val2,
           username: val,
