@@ -42,7 +42,7 @@ const Setting = ({navigation}) => {
   let Dispatch = useDispatch();
   const saveData = async val => {
     try {
-      await AsyncStorage.removeItem('user_sessionblog');
+      await AsyncStorage.removeItem('user_sessionblog_new');
       navigation.replace('Login');
     } catch (error) {
       console.log(error);
@@ -167,7 +167,7 @@ const Setting = ({navigation}) => {
       await user
         .delete()
         .then(async () => {
-          await AsyncStorage.removeItem('user_sessionblog');
+          await AsyncStorage.removeItem('user_sessionblog_new');
           navigation.replace('Login');
           Alert.alert('Account', 'Account deleted Successfully.');
         })

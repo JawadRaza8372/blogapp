@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
   const saveData = async (val, val2, val3) => {
     try {
       await AsyncStorage.setItem(
-        'user_sessionblog',
+        'user_sessionblog_new',
         JSON.stringify({
           email: Email?.replace(' ', ''),
           username: val,
@@ -57,7 +57,7 @@ const Login = ({navigation}) => {
   const saveDataGoogle = async (val, val2, val3) => {
     try {
       await AsyncStorage.setItem(
-        'user_sessionblog',
+        'user_sessionblog_new',
         JSON.stringify({
           email: val2,
           username: val,
@@ -163,7 +163,6 @@ const Login = ({navigation}) => {
     if (Querysnapshot.empty) {
       setloader(false);
     } else {
-      console.log(Querysnapshot.docs[0].data());
       updateDocument(Querysnapshot.docs[0].id, {
         email: Querysnapshot.docs[0].data().email,
         fcmtoken: fcmtoken,
@@ -231,26 +230,25 @@ const Login = ({navigation}) => {
     }
     setloader(true);
     try {
-      const User = await auth().signInWithEmailAndPassword(
-        Email?.replace(' ', ''),
-        Password,
-      );
-      if (User.user.emailVerified) {
-        CheckDoc();
-      } else {
-        try {
-          await User.user.sendEmailVerification();
-          Alert.alert(
-            'Verification',
-            'Your Email is Not Verified Please Verifiy your email',
-          );
-        } catch (error) {
-          console.log(error);
-          Alert.alert('Error', error.code);
-        } finally {
-          setloader(false);
-        }
-      }
+      await auth()
+        .signInWithEmailAndPassword(Email?.replace(' ', ''), Password)
+        .then(async User => {
+          if (User.user.emailVerified) {
+            CheckDoc();
+          } else {
+            try {
+              await User.user.sendEmailVerification();
+              Alert.alert(
+                'Verification',
+                'Your Email is Not Verified Please Verifiy your email',
+              );
+            } catch (error) {
+              console.log(error);
+              Alert.alert('Error', error.code);
+              setloader(false);
+            }
+          }
+        });
     } catch (error) {
       console.log(error);
       setloader(false);

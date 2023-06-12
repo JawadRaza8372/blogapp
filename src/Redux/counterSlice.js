@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const fetchValue = createAsyncThunk('counter/fetchValue', async () => {
   try {
-    const value = await AsyncStorage.getItem('user_sessionblog');
+    const value = await AsyncStorage.getItem('user_sessionblog_new');
     if (value !== null) {
       // Handle the retrieved value if needed
       // const parsedValue = JSON.parse(value);
