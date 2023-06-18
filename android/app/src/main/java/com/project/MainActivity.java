@@ -1,4 +1,4 @@
-package com.project;
+package com.exclusiveappproject;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
